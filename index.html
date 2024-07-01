@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="playerDiv" style="width:100%; padding-top:56.25%"></div>
+<script src="https://demo.nanocosmos.de/nanoplayer/api/release/nanoplayer.4.min.js"></script>
+<script>
+var player;
+var config = {
+	"source": {
+		"group": {
+			"id": "c17a332e-ad69-47b2-bf40-811a1e94d721",
+			"apiurl": "https://bintu.nanocosmos.de"
+		},
+		"options": {
+			"adaption": {
+				"rule": "deviationOfMean"
+			}
+		},
+		"startIndex": 0
+	},
+	"playback": {
+		"latencyControlMode": "balancedadaptive",
+		"autoplay": true,
+		"automute": true,
+		"faststart": true
+	},
+	"style": {
+		"width": "auto",
+		"height": "auto"
+	}
+};
+document.addEventListener('DOMContentLoaded', function () {
+    player = new NanoPlayer("playerDiv");
+    player.setup(config).then(function (config) {
+        console.log("setup success");
+        console.log("config: " + JSON.stringify(config, undefined, 4));
+    }, function (error) {
+        alert(error.message);
+    });
+});
+</script>
+</body>
+</html>
